@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Vue | Instance Manip.</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    </head>
+    <body>
+
+        <div id="app">
+            <ul>
+                <li v-model="items" v-for="item in items">{{ item }}</li>
+            </ul>
+        </div>
+
+        <script type="text/javascript">
+
+            var data = {
+                items: [
+                    'First',
+                    'Second',
+                    'Third',
+                    'Fourth'
+                ]
+            };
+            
+            // will not allow to modify data object after this point >>>
+            //Object.freeze(data);
+
+            var vm = new Vue({
+                el: '#app',
+                data: data
+            });
+
+            setTimeout(function(){
+                vm.items = [
+                        'Something',
+                        'Something else',
+                        'Something very different!'
+                    ];
+            }, 5000);
+
+        </script>
+    </body>
+</html>

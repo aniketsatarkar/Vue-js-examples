@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    </head>
+    <body>
+
+        <div id="app">
+            
+            <!-- TEXT -->
+            <!-- will update the value of msg as per input -->
+            <span>{{ msg }}</span>
+            <br>
+            <!-- will *not* update the value of msg as per input -->
+            <span v-once>{{ msg }}</span>
+            <br><br>
+            <input type="text" v-model="msg">
+
+            <!-- RAW HTML -->
+            <p>Using Mustaches: {{ rawHTML }}</p>
+            <p> Using v-html directive : <span v-html="rawHTML"></span></p>
+
+            <!-- ATTRIBUTES -->
+            <div v-bind:id="eleId">I have dynamic <b>id</b> attribute</div>
+            <br>
+            <button v-bind:disabled="isDisabled">Click Me!</button>
+
+            <!-- USING JS EXPRESSIONS -->
+            <div id="'item-' + eleId">have dynamic-id with little modification!</div>
+
+        </div>
+
+        <script type="text/javascript">
+
+            var data = {
+                msg       : 'A test message!',
+                rawHTML   : `<span style="color:red">This should be in red!</span>`,
+                isDisabled: true, 
+                eleId     : 'elementId'
+            };
+
+            var vm = new Vue({
+                el  : '#app',
+                data: data
+            });
+            
+        </script>
+    </body>
+</html>

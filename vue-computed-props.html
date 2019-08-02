@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    </head>
+    <body>
+
+        <div id="app">
+            <p>Original Message: {{ message }}</p>
+            <p>Computed Message: {{ reverseMessage }}</p>
+        </div>
+
+        <script type="text/javascript">
+
+            var data = {
+                message: 'Hello!'
+            };
+
+            var vm = new Vue({
+                el  : '#app',
+                data: data,
+                // COMPUTED PROPERTY DEFINED BELOW >>>
+                computed: {
+                    reverseMessage : function() {
+                        return this.message.split('').reverse().join('');
+                    }
+                }
+            });
+
+        </script>
+    </body>
+</html>
