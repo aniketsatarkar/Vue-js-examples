@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    </head>
+    <body>
+
+        <div id="app">
+            <h2>{{ message | capitalize }}</h2>
+            <h2>{{ message | lower }}</h2>
+
+            <!--
+                                
+            -->
+            <h2>{{ message | case('lower') }}</h2>
+            <h2>{{ message | case('upper') }}</h2>
+        </div>
+
+        <script type="text/javascript">
+
+            // filter defined globally so it can be accessed via all instances.
+            Vue.filter('lower', function(value) {
+                if(!value) return '';
+                value = value.toString();
+                return value.toLowerCase();
+            });
+
+            var data = {
+                message: 'Hello, World!'
+            };
+
+            var vm = new Vue({
+                el: '#app',
+                data: data,
+                
+                // filter defined for an instance >>>
+                filters: {
+                    capitalize: function(value) {
+                        if(!value) return '';
+                        value = value.toString();
+                        return value.toUpperCase();
+                    },
+                    case : function(value = null, type = 'lower') {
+                        if(!value) return '';
+                        value = value.toString();
+                        
+                        if(type == 'lower')
+                            return  value.toLowerCase();
+                        else if(type == 'upper')
+                            return  value.toUpperCase();
+                        else
+                            return value;
+                    }
+                }
+            });
+
+        </script>
+    </body>
+</html>

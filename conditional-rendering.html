@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Conditional Rendering | Vue</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    </head>
+    <body>
+        
+        <div id="app">
+            <label>
+                <input type="checkbox" v-model="show">
+                Switch True/False
+            </label>
+            <br><hr>
+
+            <!-- if condition -->
+            <h1 v-if="show">Vue is awesome!</h1>
+            <hr>
+
+            <!-- if-else condition -->
+            <h1 v-if="show">Vue is awesome!</h1>
+            <h1 v-else>Oh no!</h1>
+            <hr>
+
+            <!-- if-else-if condition -->
+            <div v-if="show == true">
+                Inside If!
+            </div>
+            <div v-else-if="show == null">
+                Inside Else-If!
+            </div>
+            <div v-else>
+                Inside Else!
+            </div>
+            <hr>
+
+            <!-- 
+                Another option for conditionally display an element is the v-show directive.
+                The usage is largely the same.
+            -->
+            <h1 v-show="show">Hello!</h1>
+
+        </div>
+
+        <script type="text/javascript">
+
+            var data = {
+                show: false
+            };
+
+            var vm = new Vue({
+                el: '#app',
+                data: data
+            });
+
+        </script>
+    </body>
+</html>

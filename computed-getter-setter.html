@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    </head>
+    <body>
+
+        <div id="app">
+            <div>
+                <label>Full Name</label>
+                <input v-model="fullName" id="fullName" type="text">
+            </div>
+            <br>
+            <div>
+                <lable>First Name: {{ firstName }}</lable>
+                <br>
+                <lable>Last Name : {{ lastName }}</lable>
+            </div>
+            <br>
+            <hr>
+            <h2>{{ fullName }}</h2>
+        </div>
+
+        <script type="text/javascript">
+
+            var data = {
+                firstName : 'John',
+                lastName  : 'Doe',
+                fullName  : 'John Doe'
+            };
+
+            var vm = new Vue({
+                el       : '#app',
+                data     : data, 
+                computed : {
+                    fullName : {
+                        get : function() {
+                            return this.firstName + ' ' + lastName;
+                        },
+                        set: function(value) {
+                            var names      = value.split(' ');
+                            console.log(names);
+                            this.firstName = names[0];
+                            this.lastName  = names[names.length - 1];
+                        }
+                    }
+                }
+            });
+
+
+        </script>
+    </body>
+</html>

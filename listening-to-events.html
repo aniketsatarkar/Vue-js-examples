@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Listening to events | Vue.js</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    </head>
+    <body>
+
+        <div id="app">
+            <!-- 
+                We can use the v-on directive to listen to DOM 
+                events and run some JS when they're triggered
+            -->
+            <button v-on:click="count -= 1">&nbsp;-1</button>
+            <button v-on:click="count += 1">&nbsp;+1</button>
+            <p>Count: {{ count }}</p>
+            <hr>
+
+            <!--
+                the logic for many events handlers will be more complex though,
+                so keeping your javascript in the value of the v-on attribute isn't 
+                feasible. That's why v-on can also accept the name of a method you'd like to call.
+             -->
+            <button v-on:click="greet">Greet!</button>
+            <hr>
+
+            <!--
+                Instead of binding directly to a method name, we can also use methods
+                in an inline JavaScript statemet:
+            -->
+            <div>
+                <button v-on:click="say('Hi!')">Say Hi!</button>
+                <button v-on:click="say('What')">Say What</button>
+            </div>
+            <hr>
+
+            <!-- 
+                Sometimes we also need to access the original DOM events in an
+                inline statement handler. You can pass it into a method using
+                the special $event variable.
+             -->
+            <button v-on:click="warn('Form cannot be submited yet.', $event)"></button>
+            <hr>
+
+        </div>
+
+        <!-- JavaScript -->
+        <script type="text/javascript">
+
+            var data = {
+                count: 0
+            };
+
+            var vm = new Vue({
+                el      : '#app',
+                data    : data,
+                methods : {
+                    greet : function() {
+                        alert('Greetings!');
+                    },
+                    say : function(msg){
+                        alert(msg);
+                    },
+                    warn: function(msg, event){
+                        if(event)
+                            event.preventDefauly();
+                        
+                        alert(msg);
+                    }
+                }
+            });
+        </script>
+
+    </body>
+</html>
