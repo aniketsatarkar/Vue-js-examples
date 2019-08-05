@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Named Slots | Vue</title>
+        <!-- CSS -->
+        <link rel="stylesheet" href="./libs/bootstrap/css/bootstrap.min.css">
+        
+        <!-- JS -->
+        <script src="./libs/jquery/jquery-3.4.1.min.js"></script>
+        <script src="./libs//vue/vue.min.js"></script>
+        <script src="./libs/bootstrap/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+
+        <div id="app">
+            <base-layout>
+                <template v-slot:header>
+                    <h1>Here might be a page title</h1>
+                </template>
+                
+                <p>A paragraph for the main content.</p>
+                <p>And another one.</p>
+                
+                <template v-slot:footer>
+                    <p>Here's some contact info</p>
+                </template>
+            </base-layout>
+        </div>
+
+        <script>
+            
+            Vue.component('base-layout', {
+                template: `
+                <div class="container">
+                    <header>
+                        <slot name="header"></slot>
+                    </header>
+                    <main>
+                        <slot></slot>
+                    </main>
+                    <footer>
+                        <slot name="footer"></slot>
+                    </footer>
+                </div> 
+                `
+            });
+
+            var data = {};
+
+            new Vue({
+                el: '#app',
+                data : data
+            });
+
+        </script>
+    </body>
+</html>

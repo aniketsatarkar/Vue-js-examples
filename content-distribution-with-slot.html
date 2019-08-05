@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Content distribution with slot | Vue.js</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <style>
+            .error-box {
+                padding   : 10px 20px;
+                background: #f3beb8;
+                border    : 1px solid #f09898;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div id="app">
+            <!-- 
+                just like HTML elements, it's often useful to be able to 
+                pass content to a component, like this
+            -->
+            <error-box>Some Error Here!</error-box>
+
+            <br>
+
+            <!-- will show fallback/default text from the template -->
+            <error-box></error-box>
+        </div>
+
+        <script>
+
+            Vue.component('error-box', {
+                // slot can also have a fallback value which is used
+                // when there is no value provided ex:
+                // <slot>Invalid values provided!</slot>
+                template : `
+                <div class="error-box">
+                    <strong>Error!</strong>
+                    <slot>System Error!</slot>
+                </div>
+                `
+            });
+
+            var data = {};
+
+            var va = new Vue({
+                el : '#app',
+                data : data
+            });
+        </script>
+    </body>
+</html>
