@@ -23,19 +23,25 @@
     <body>
 
         <div id="app">
+            
             <input id="bold" type="checkbox" v-model="isBold">
             <lable for="bold">&nbsp;Make Bold</lable>
             <br>
+
             <input id="danger" type="checkbox" v-model="isDanger">
             <lable for="danger">&nbsp;Make Danger</lable>
             <br>
+
             <input id="underline" type="checkbox" v-model="isUnderline">
             <lable for="underline">&nbsp;Make Underline</lable>
             <br>
+
             <hr>
+            
             <div id="app" style="margin-left: 50%">
                 <span v-bind:class="{ bold: isBold, danger: isDanger, underline: isUnderline }">Watch This!</span>
             </div>
+
         </div>
 
         <script type="text/javascript">
