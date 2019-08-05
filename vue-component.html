@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Component | Vue.js</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    </head>
+    <body>
+
+        <div id="app">
+            <list-component v-bind:items="items"></list-component>
+            <list-component v-bind:items="numbers"></list-component>
+            <list-component v-bind:items="names"></list-component>
+        </div>
+
+        <script>
+
+            // a component registered globally >>>            
+            Vue.component('list-component', {
+                props: ['items'],
+                template: `
+                <ul>
+                    <li v-for="item in items">{{ item }}</li>
+                </ul>
+                `
+            });
+
+            // specifying data for Vue instance >>>
+            var data = {
+                items  : ['A','B','C'],
+                numbers: [1,2,3,4,5],
+                names  : ['Aniket', 'Pankaj', 'Akash']
+            };
+
+            // initialize Vue instance >>>
+            new Vue({
+                el   : '#app',
+                data : data
+            });
+        </script>
+    </body>
+</html>
