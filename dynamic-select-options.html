@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dynamic Select Options | Vue.js</title>
+        <!-- CSS -->
+        <link rel="stylesheet" href="./libs/bootstrap/css/bootstrap.min.css">
+        
+        <!-- JS -->
+        <script src="./libs/jquery/jquery-3.4.1.min.js"></script>
+        <script src="./libs//vue/vue.min.js"></script>
+        <script src="./libs/bootstrap/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        
+        <div id="app" class="container mt-3">
+            <div class="d-flex justify-content-center">
+                <div style="border: 1px solid gray" class="p-4">
+                    <div class="d-flex justify-content-center mb-3">
+                        <h2>Login</h2>
+                    </div>
+                    <div class="form-group">
+                        <label>Select a Value</label>
+                        <select v-model="selected" options="myOptions"></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script type="text/javascript">
+
+            var data = {
+                myOptions : ['A','B','C'], 
+                selected  : null
+            };
+
+             var vm = new Vue({
+                 el: '#app',
+                 data : data
+             });
+
+        </script>
+    </body>
+</html>
