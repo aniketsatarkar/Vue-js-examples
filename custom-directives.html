@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Custom Directives | Vue.js</title>
+        <link rel="stylesheet" href="./libs/bootstrap/css/bootstrap.min.css">
+        
+        <!-- JS -->
+        <script src="./libs/jquery/jquery-3.4.1.min.js"></script>
+        <script src="./libs//vue/vue.min.js"></script>
+        <script src="./libs/bootstrap/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+
+        <div class="container mt-5" id="app">
+            <button class="btn btn-primary" @click="decrement"> -1 </button>
+            <button class="btn btn-primary" @click="reset"> 0 </button>
+            <button class="btn btn-primary" @click="increment"> +1 </button>
+            <hr>
+
+            <!-- A custom directive applied to span element -->
+            <span v-count>0</span>
+
+        </div>
+
+        <script>
+
+            var data = {
+                count : 0
+            };
+
+            // A custom directive that can be assigned with 'v-count' to
+            // show the count as its content.
+            Vue.directive('count', function(el, binding) {
+                el.innerHTML = data.count;
+
+                // binding have following properties >>>
+                console.log('name: '        + binding.name);
+                console.log('value: '       + binding.value);
+                console.log('oldValue: '    + binding.oldValue);
+                console.log('expression: '  + binding.expression);
+                console.log('arg: '         + binding.arg);
+            });
+
+            new Vue({
+                el     : '#app',
+                data   : data,
+                methods: {
+                    // decrement the count by 1
+                    decrement : function(){
+                        this.count -= 1;
+                    },
+                    // reset the count to zero
+                    reset: function(){
+                        this.count = 0;
+                    },
+                    // increment the count by 1 
+                    increment : function(){
+                        this.count += 1;
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
