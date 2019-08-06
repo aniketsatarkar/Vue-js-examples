@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Custom Directives | Vue.js</title>
+        <link rel="stylesheet" href="./libs/bootstrap/css/bootstrap.min.css">
+        
+        <!-- JS -->
+        <script src="./libs/jquery/jquery-3.4.1.min.js"></script>
+        <script src="./libs//vue/vue.min.js"></script>
+        <script src="./libs/bootstrap/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+
+        <h2>Mixins Example!</h2>
+
+        <script>
+
+            // define a mixin object
+            var myMixin = {
+                created: function () {
+                    this.hello()
+                },
+                methods: {
+                    hello: function () {
+                        console.log('hello from mixin!')
+                    }
+                }
+            }
+
+            // define a component that uses this mixin
+            var Component = Vue.extend({
+                mixins: [myMixin]
+            });
+
+            var component = new Component(); // => "hello from mixin!"
+
+        </script>
+    </body>
+</html>

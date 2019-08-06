@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mixins Option Merging | Vue.js</title>
+        <link rel="stylesheet" href="./libs/bootstrap/css/bootstrap.min.css">
+        
+        <!-- JS -->
+        <script src="./libs/jquery/jquery-3.4.1.min.js"></script>
+        <script src="./libs//vue/vue.min.js"></script>
+        <script src="./libs/bootstrap/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+
+        <h2>Mixins Option Merging!</h2>
+
+        <script >
+            
+            // When a mixin and the component itself contain
+            // overlapping options, they will be "merged" using
+            // appropriate strategies.
+
+            // for example, data objects undergo a recursive merge,
+            // with the component's data taking priority in cases of
+            // conflict.
+            var mixin = {
+                data: function() {
+                    return {
+                        message : 'hello',
+                        foo : 'abc',
+                    };
+                }
+            };
+
+            new Vue({
+                mixins : [mixin],
+                data : function() {
+                    return {
+                        message: 'goodbye',
+                        bar    : 'def'
+                    };
+                },
+                created : function() {
+                    console.log(this.$data);
+                }
+            });
+
+        </script>
+    </body>
+</html>

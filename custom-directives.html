@@ -19,6 +19,12 @@
 
             <!-- A custom directive applied to span element -->
             <span v-count>0</span>
+            <hr>
+
+            <span v-demo></span>
+            <hr>
+
+            <div v-list="['A', 'B', 'C']"></div>
 
         </div>
 
@@ -41,20 +47,45 @@
                 console.log('arg: '         + binding.arg);
             });
 
+            Vue.directive('demo', {
+                bind: function (el, binding, vnode) {
+                    var s = JSON.stringify
+                    el.innerHTML =
+                    'name: '       + s(binding.name) + '<br>' +
+                    'value: '      + s(binding.value) + '<br>' +
+                    'expression: ' + s(binding.expression) + '<br>' +
+                    'argument: '   + s(binding.arg) + '<br>' +
+                    'modifiers: '  + s(binding.modifiers) + '<br>' +
+                    'vnode keys: ' + Object.keys(vnode).join(', ')
+                }
+            });
+
+            // if your directive needs multiple values, you can also pass
+            // in a JavaScript object literals. Remember, directives can take 
+            // any valid JavaScript expression.
+            Vue.directive('list', function(el, binding) {
+                innerHTML = '<ul>';
+                binding.value.forEach(function(value, key) {
+                    innerHTML += '<li>'+ value +'</li>';
+                });
+                innerHTML += '</ul>';
+                el.innerHTML = innerHTML;
+            });
+
             new Vue({
                 el     : '#app',
                 data   : data,
                 methods: {
                     // decrement the count by 1
-                    decrement : function(){
+                    decrement : function() {
                         this.count -= 1;
                     },
                     // reset the count to zero
-                    reset: function(){
+                    reset: function() {
                         this.count = 0;
                     },
                     // increment the count by 1 
-                    increment : function(){
+                    increment : function() {
                         this.count += 1;
                     }
                 }
